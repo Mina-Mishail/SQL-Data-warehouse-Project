@@ -12,7 +12,8 @@ Available naming cases
 2) pascal Case (Capitalize 2nd word forward, whiout spaces, Underscore)
 3) Snake _ Case (use small letters, separate all words by _ underscore)
 
-
+Table Naming Convetion
+--
 We are going to use snake_care 
 Language (English)
 Void reserved words : Don't use SQL, Python , C# , VBA reserved words as object names
@@ -37,6 +38,7 @@ crm_customer_info --> customer information from the CRM system.
 Gold Rules
 
 All names must startuse meaningful, business-aligned names for tables, starting with the catefory prefix.
+<category>_<entity>
 <category> : Descripe the role of the table, such as dim (dimension) or fact (fact table).
 <entity> : Descriptive name of the table, aligned with the business domain  (e.g., customers, product, Sales).
 Examples:
@@ -49,6 +51,28 @@ Pattern    Meaning                           Example
 dim_       Dimention table                  dim_customer , dim_product
 fact_      Fact table                       fact_sales
 agg_       Aggregated table                 agg_Customers ,  agg_Sales_monthly
+
+---
+
+Column Naming Conventions
+---
+
+Surrogate Keys
+
+All primary keys in DIMENTION tables must use the SUFFIX _key
+<table_name>_Key
+  <table_name> : Refers to the name of  the table or entity the key belogs to.
+  _Key : A suffix indicating that this columns is a surrogate key.
+  Example: customer_key --> surrogate key in the dim_customers table.
+
+
+Technical Columns
+
+ All technical columns must start with prefix dwh_, followed by a descriptive name indicating the column's purpose.
+ dwh_<column_name>
+    dwh_ : prefix exclusively for system-generated metadata.
+    <column_name> : Descriptive name indicating the column's purpose.
+    Example: dwh_load_date --> System-generated  columns used to store the data when the record was loaded.
 
 
 
