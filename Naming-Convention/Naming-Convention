@@ -37,6 +37,19 @@ crm_customer_info --> customer information from the CRM system.
 Gold Rules
 
 All names must startuse meaningful, business-aligned names for tables, starting with the catefory prefix.
-<category> : Descriptive name of the table, aligned with business domain (e.g., customers, product, Sales).
-<entity> : Extract table name from the source system.
-crm_customer_info --> customer information from the CRM system.
+<category> : Descripe the role of the table, such as dim (dimension) or fact (fact table).
+<entity> : Descriptive name of the table, aligned with the business domain  (e.g., customers, product, Sales).
+Examples:
+   dim_Customers --> Dimension table for customer data.
+fact_sales --> Fact table containing sales transactions.
+
+Glossary of category patterns
+
+Pattern    Meaning                           Example
+dim_       Dimention table                  dim_customer , dim_product
+fact_      Fact table                       fact_sales
+agg_       Aggregated table                 agg_Customers ,  agg_Sales_monthly
+
+
+
+
