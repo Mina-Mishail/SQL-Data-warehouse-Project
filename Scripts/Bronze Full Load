@@ -1,7 +1,7 @@
 create or alter proc bronze.load_bronze
 as
 	Begin
-		Declare @start_time datetime, @end_time datetime;
+		Declare @start_time datetime, @end_time datetime, @batch_start_Time datetime, @batch_end_time datetime;
 
 		Begin TRY
 			print '====================================================================';
@@ -12,6 +12,7 @@ as
 			print 'Loading CRM Tables';
 			print '--------------------------------------------------------------';
 
+			set @batch_start_Time = GETDATE();
 			set @start_time = GETDATE();
 			print' >> Truncate Bronze Layer - crm_cust_info Table';
 
@@ -139,6 +140,11 @@ as
 				set @end_time = GETDATE();
 				print ' >> Load duration: ' + cast(datediff(MILLISECOND, @start_time, @end_time) as nvarchar) + ' MILLISECONDs';
 				print ' >> ------------------------------------';
+
+				print ' >> -------------- Total Project Loading Data Time ----------------------';
+
+				set @batch_end_Time = GETDATE();
+				print ' >> Total load duration: ' + cast(datediff(MILLISECOND, @batch_start_Time, @batch_end_Time) as nvarchar) + ' MILLISECONDs';
 
 		End Try
 		Begin Catch
