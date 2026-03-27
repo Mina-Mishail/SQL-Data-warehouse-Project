@@ -1,3 +1,4 @@
+
 create or alter proc silver.load_silver as 
 	Begin
 			Declare @start_time datetime, @end_time datetime, @batch_start_Time datetime, @batch_end_time datetime;
@@ -228,7 +229,10 @@ create or alter proc silver.load_silver as
 
 		 End Try
 		 Begin Catch
-			print '>> '
+			Print 'Error occured during Bronze Layer';
+			Print 'Error Message' + Error_message();
+			print 'Error NUmber' + Cast(Error_number() as nvarchar);
+			print 'Error Message' + Cast(Error_State() as nvarchar);
 		 End Catch
 End
 	
