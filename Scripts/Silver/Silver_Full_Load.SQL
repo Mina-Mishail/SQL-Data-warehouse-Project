@@ -45,7 +45,8 @@ create or alter proc silver.load_silver as
 					cst_firstname,
 					cst_lastname,
 					cst_gndr,
-					cst_material_status
+					cst_material_status,
+					cst_create_date
 				)
 				select 
 					ct.cst_id,
@@ -61,12 +62,14 @@ create or alter proc silver.load_silver as
 						when UPPER(TRIM(ct.cst_material_status)) = 'S' then 'Single'
 						when UPPER(TRIM(ct.cst_material_status)) = 'M' then 'Married'
 						else 'n/a' 
-					End 'cst_material_status'
+					End 'cst_material_status',
+					CAST(ct.cst_create_date as date) cst_create_date	
 				from CTE ct
 				where   ct.flag_last = 1
 				
 				set @end_time = GETDATE();
 				print ' >> Load duration: ' + cast(datediff(MILLISECOND, @start_time, @end_time) as nvarchar) + ' MILLISECONDs';
+
 
 				-- ########################################################################
 
