@@ -1,0 +1,86 @@
+-- Here are the Naming convention list used in this project
+---
+
+Specify Folders, Files naming in order to standardize naming all over the project.
+
+In order to allow easy usage and understanding of any object in the project
+
+---
+ 
+Available naming cases
+1) CamelCase (Capitalize all words whiout spaces, Underscore)
+2) pascal Case (Capitalize 2nd word forward, whiout spaces, Underscore)
+3) Snake _ Case (use small letters, separate all words by _ underscore)
+
+Table Naming Convetion
+--
+We are going to use snake_care 
+Language (English)
+Void reserved words : Don't use SQL, Python , C# , VBA reserved words as object names
+
+---
+
+Bronze Rules
+
+All names must start with the source system name, and table name match their original names without renamming.
+<entity> : Extract table name from the source system.
+crm_customer_info --> customer information from the CRM system.
+
+
+Silver Rules
+
+All names must start with the source system name, and table name match their original names without renamming.
+<entity> : Extract table name from the source system.
+crm_customer_info --> customer information from the CRM system.
+
+
+
+Gold Rules
+
+All names must startuse meaningful, business-aligned names for tables, starting with the catefory prefix.
+<category>_<entity>
+<category> : Descripe the role of the table, such as dim (dimension) or fact (fact table).
+<entity> : Descriptive name of the table, aligned with the business domain  (e.g., customers, product, Sales).
+Examples:
+   dim_Customers --> Dimension table for customer data.
+fact_sales --> Fact table containing sales transactions.
+
+Glossary of category patterns
+
+Pattern    Meaning                           Example
+dim_       Dimention table                  dim_customer , dim_product
+fact_      Fact table                       fact_sales
+agg_       Aggregated table                 agg_Customers ,  agg_Sales_monthly
+
+---
+
+Column Naming Conventions
+---
+
+Surrogate Keys
+
+All primary keys in DIMENTION tables must use the SUFFIX _key
+<table_name>_Key
+  <table_name> : Refers to the name of  the table or entity the key belogs to.
+  _Key : A suffix indicating that this columns is a surrogate key.
+  Example: customer_key --> surrogate key in the dim_customers table.
+
+
+Technical Columns
+
+ All technical columns must start with prefix dwh_, followed by a descriptive name indicating the column's purpose.
+ dwh_<column_name>
+    dwh_ : prefix exclusively for system-generated metadata.
+    <column_name> : Descriptive name indicating the column's purpose.
+    Example: dwh_load_date --> System-generated  columns used to store the data when the record was loaded.
+
+
+Stored Procedure
+---
+All Stored Procedures used for loading data must follow the naming pattern:
+load_<layer>.
+   <layer> : Represent the layer being loaded, such as bronze, silver, or gold.
+
+Exampl: 
+       load_bronze --> stored procedure for loading data into the Bronze layer
+       load_silver --> stored procedure for loading data into the Silver layer
